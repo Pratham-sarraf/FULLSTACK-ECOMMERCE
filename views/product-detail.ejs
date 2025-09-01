@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title><%= product.name %> - Product Detail</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     :root {
@@ -94,7 +96,7 @@
       color: #007185;
       font-size: 1.2rem;
       position: relative;
-      left:160px
+      left: 160px
     }
 
     .price-container {
@@ -225,9 +227,17 @@
     }
 
     @keyframes float {
-      0% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(5deg); }
-      100% { transform: translateY(0) rotate(0deg); }
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-20px) rotate(5deg);
+      }
+
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
     }
 
     .comment-section {
@@ -265,75 +275,77 @@
       font-weight: 500;
       cursor: pointer;
     }
-    .average-rating{
-          display: inline-block;  /* Size content ke according ho jaata hai */
-  padding: 2px 6px;        /* Thoda padding for neatness */
-  background-color: #f4f4f4; /* Optional: halki background for highlight */
-  border-radius: 4px;       /* Rounded look */
-  font-weight: bold;        /* Highlighted look */
+
+    .average-rating {
+      display: inline-block;
+      padding: 2px 6px;
+      background-color: #f4f4f4;
+      border-radius: 4px;
+      font-weight: bold;
     }
+
     .submit-comment-btn:hover {
       background-color: var(--accent);
     }
 
-      .review-section {
+    .review-section {
       margin-top: 0rem;
       padding: 2rem;
       background: white;
       border-radius: 12px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     }
-    
+
     .review-section h2 {
       font-size: 1.5rem;
       margin-bottom: 1.5rem;
       color: #2d3436;
       padding-bottom: 0.5rem;
-      border-bottom: 2px solid #00cec9;
+      border-bottom: 2px solid var(--secondary);
       display: inline-block;
     }
-    
+
     .review-box {
       padding: 1.5rem;
       margin-bottom: 1.5rem;
       background: #f8f9fa;
       border-radius: 8px;
-      border-left: 4px solid #6c5ce7;
+      border-left: 4px solid var(--primary);
       transition: all 0.3s ease;
     }
-    
+
     .review-box:hover {
       transform: translateX(5px);
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     }
-    
+
     .review-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 0.5rem;
     }
-    
+
     .review-rating {
       color: #FFA41C;
       font-weight: 600;
     }
-    
+
     .review-date {
       color: #636e72;
       font-size: 0.85rem;
     }
-    
+
     .review-content {
       color: #2d3436;
       line-height: 1.6;
     }
-    .review-container {
-  max-width: 1000px;
-  margin: 10px auto;
-}
 
-    
+    .review-container {
+      max-width: 1000px;
+      margin: 10px auto;
+    }
+
     .no-reviews {
       text-align: center;
       padding: 2rem;
@@ -342,20 +354,99 @@
     }
 
     .delete-btn {
-  background: none;
-  border: none;
-  color: #ff4757;
-  cursor: pointer;
-  transition: all 0.2s;
-}
+      background: none;
+      border: none;
+      color: #ff4757;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
 
-.delete-btn:hover {
-  color: #e84118;
-  transform: scale(1.1);
-}
+    .delete-btn:hover {
+      color: #e84118;
+      transform: scale(1.1);
+    }
     
+    /* ============================================= */
+    /* ==   ✨ RESPONSIVE STYLES FOR MOBILE   ✨   == */
+    /* ============================================= */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem; /* Less padding on small screens */
+      }
+
+      .floating-bg {
+        display: none; /* Hide decorative background elements */
+      }
+
+      .product-container {
+        grid-template-columns: 1fr; /* Stack image and info vertically */
+        gap: 0;
+        margin: 1rem auto;
+      }
+      
+      .product-image-container {
+        padding: 1rem;
+      }
+      
+      .product-image {
+        width: 100%; /* Make image fill its container */
+        height: auto; /* Maintain aspect ratio */
+        max-height: 350px; /* Prevent image from being too tall */
+      }
+
+      .product-info {
+        padding: 1.5rem; /* Consistent padding all around */
+      }
+
+      .product-name {
+        font-size: 1.5rem; /* Slightly smaller title */
+      }
+      
+      .product-rating {
+        flex-wrap: wrap; /* Allow rating elements to wrap */
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .rating-count {
+        position: static; /* Reset absolute positioning */
+        left: auto;
+        font-size: 1rem;
+      }
+      
+      .price {
+        font-size: 1.6rem;
+      }
+      
+      .about-item {
+        margin: 1.5rem 0;
+      }
+
+      .action-buttons {
+        flex-direction: column; /* Stack buttons vertically */
+      }
+
+      .review-container {
+        margin: 1rem auto;
+      }
+
+      .review-section {
+        padding: 1rem;
+      }
+      
+      .review-box {
+        padding: 1rem;
+      }
+
+      .review-header {
+        flex-direction: column; /* Stack rating and date */
+        align-items: flex-start;
+        gap: 0.25rem;
+      }
+    }
   </style>
 </head>
+
 <body>
   <div class="floating-bg bg-1"></div>
   <div class="floating-bg bg-2"></div>
@@ -368,37 +459,30 @@
     <div class="product-info">
       <h1 class="product-name"><%= product.name %></h1>
 
-<% 
-  let totalRating = 0;
-  reviews.forEach(r => totalRating += r.rating);
-  let avgRating = reviews.length > 0 ? (totalRating / reviews.length) : 0;
+      <% 
+        let totalRating = 0;
+        reviews.forEach(r => totalRating += r.rating);
+        let avgRating = reviews.length > 0 ? (totalRating / reviews.length) : 0;
+        let fullStars = Math.floor(avgRating);
+        let hasHalfStar = avgRating - fullStars >= 0.5;
+        let emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+      %>
 
-  let fullStars = Math.floor(avgRating); // ⭐ full stars
-  let hasHalfStar = avgRating - fullStars >= 0.5; // ⯪ half star if >= 0.5
-  let emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0); // ☆ empty stars
-%>
-
-<div class="product-rating">
-  <div class="stars">
-    <% for (let i = 0; i < fullStars; i++) { %>
-      <i class="fas fa-star"></i>
-    <% } %>
-
-    <% if (hasHalfStar) { %>
-      <i class="fas fa-star-half-alt"></i>
-    <% } %>
-
-    <% for (let i = 0; i < emptyStars; i++) { %>
-      <i class="far fa-star"></i>
-    <% } %>
-  </div>
-
-  <div class="average-rating"> <%= avgRating.toFixed(1) %> / 5
-  </div>
-
-  <span class="rating-count"><%= reviews.length %> ratings</span>
-</div>
-
+      <div class="product-rating">
+        <div class="stars">
+          <% for (let i = 0; i < fullStars; i++) { %>
+            <i class="fas fa-star"></i>
+          <% } %>
+          <% if (hasHalfStar) { %>
+            <i class="fas fa-star-half-alt"></i>
+          <% } %>
+          <% for (let i = 0; i < emptyStars; i++) { %>
+            <i class="far fa-star"></i>
+          <% } %>
+        </div>
+        <div class="average-rating"> <%= avgRating.toFixed(1) %> / 5 </div>
+        <span class="rating-count"><%= reviews.length %> ratings</span>
+      </div>
 
       <hr style="border: none; border-top: 1px solid #e7e7e7; margin: 1rem 0;">
 
@@ -406,8 +490,7 @@
         <span class="price">
           <span class="price-symbol">₹</span>
           <%= product.price.toLocaleString("en-IN") %>
-<span class="price-decimal">.<%= product.price.toFixed(2).split('.')[1] %>
-</span>
+          <span class="price-decimal">.<%= product.price.toFixed(2).split('.')[1] %></span>
         </span>
       </div>
 
@@ -426,7 +509,7 @@
           <li>Customer favorite with 4.5+ star average rating</li>
         </ul>
       </div>
-      
+
       <form action="/products/<%= product._id %>/add-to-cart" method="POST" style="display:inline;">
         <div class="action-buttons">
           <button type="submit" class="btn btn-primary">
@@ -438,91 +521,71 @@
         </div>
       </form>
 
-      <!-- Rating + Comment Form -->
       <div class="comment-section">
-<form action="/products/<%= product._id %>/review" method="POST">
-  <div class="rating-stars" id="ratingStars">
-    <% for(let i = 1; i <= 5; i++) { %>
-      <i class="fas fa-star" data-value="<%= i %>"></i>
-    <% } %>
-  </div>
-
-  <!-- Hidden field for selected star rating -->
-  <input type="hidden" name="rating" id="ratingValue" value="1" />
-
-  <!-- Textarea for comment (name changed to 'review' to match backend) -->
-  <textarea name="review" rows="4" placeholder="Write your comment here..." ></textarea>
-
-  <button type="submit" class="submit-comment-btn">Submit Review</button>
-</form>
+        <form action="/products/<%= product._id %>/review" method="POST">
+          <div class="rating-stars" id="ratingStars">
+            <% for(let i = 1; i <= 5; i++) { %>
+              <i class="fas fa-star" data-value="<%= i %>"></i>
+            <% } %>
+          </div>
+          <input type="hidden" name="rating" id="ratingValue" value="1" />
+          <textarea name="review" rows="4" placeholder="Write your comment here..."></textarea>
+          <button type="submit" class="submit-comment-btn">Submit Review</button>
+        </form>
       </div>
-
 
       <a href="/products" class="back-link">
         <i class="fas fa-arrow-left"></i> Back to Products
       </a>
     </div>
   </div>
-    <div class="review-container">
 
-    
-  <div class="review-section">
-    <h2>Customer Reviews</h2>
-    <% if (reviews.length > 0) { %>
-      <% reviews.forEach(review => { %>
-<h4>User: <%= review.user.username %></h4>
-
-
-   
-
-<div class="review-box">
-  <div class="review-header">
-    <div class="review-rating">
-      <% for(let i = 1; i <= 5; i++) { %>
-        <% if(i <= review.rating) { %>
-          <i class="fas fa-star"></i>
-        <% } else { %>
-          <i class="far fa-star"></i>
-        <% } %>
+  <div class="review-container">
+    <div class="review-section">
+      <h2>Customer Reviews</h2>
+      <% if (reviews.length > 0) { %>
+        <% reviews.forEach(review => { %>
+          <h4>User: <%= review.user.username %></h4>
+          <div class="review-box">
+            <div class="review-header">
+              <div class="review-rating">
+                <% for(let i = 1; i <= 5; i++) { %>
+                  <% if(i <= review.rating) { %>
+                    <i class="fas fa-star"></i>
+                  <% } else { %>
+                    <i class="far fa-star"></i>
+                  <% } %>
+                <% } %>
+                (<%= review.rating %>/5)
+              </div>
+              <div class="review-date">
+                <%= new Date(review.createdAt).toLocaleDateString('en-US', { 
+                  year: 'numeric', 
+                  month: 'short', 
+                  day: 'numeric' 
+                }) %>
+                <% if (user && user._id.equals(review.user._id)) { %>
+                  <form action="/products/<%= product._id %>/reviews/<%= review._id %>/delete" method="POST" style="display: inline;">
+                    <button type="submit" class="delete-btn">
+                      <i class="fas fa-trash-alt"></i> Delete
+                    </button>
+                  </form>
+                <% } %>
+              </div>
+            </div>
+            <div class="review-content">
+              <%= review.review %>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <div class="no-reviews">
+          <i class="far fa-comment-dots" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+          <p>No reviews yet. Be the first to review!</p>
+        </div>
       <% } %>
-      (<%= review.rating %>/5)
-    </div>
-    <div class="review-date">
-      <%= new Date(review.createdAt).toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'short', 
-        day: 'numeric' 
-      }) %>
-      <% if (user && user._id.equals(review.user._id)) { %>
-<form action="/products/<%= product._id %>/reviews/<%= review._id %>/delete" method="POST" style="display: inline;">
-  <button type="submit" class="delete-btn">
-    <i class="fas fa-trash-alt"></i> Delete
-  </button>
-</form>
-
-      <% } %>
     </div>
   </div>
-  <div class="review-content">
-    <%= review.review %>
-  </div>
-</div>
-      <% }) %>
-    <% } else { %>
-      <div class="no-reviews">
-        <i class="far fa-comment-dots" style="font-size: 2rem; margin-bottom: 1rem;"></i>
-        <p>No reviews yet. Be the first to review!</p>
-      </div>
-    <% } %>
-  </div>
-
-
-
-    </div>
-
-
-
-
 
   <script>
     const stars = document.querySelectorAll('#ratingStars .fa-star');
@@ -538,4 +601,5 @@
     });
   </script>
 </body>
+
 </html>
