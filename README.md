@@ -1,14 +1,25 @@
 # E-Commerce Web Application
 
-A **full-featured E-commerce platform** built with **MongoDB** for data storage, an **Admin Dashboard**, and **Stripe Payment Gateway** for secure online payments. The platform includes all standard e-commerce functionalities like browsing products, managing orders, cart & checkout, and secure user authentication.
+
+A full-featured e-commerce platform with **role-based access**, allowing users to browse, search, and filter products, manage their cart, and complete purchases.  
+The project emphasizes **user-friendly interfaces** and **smooth frontend-backend interaction**.
+
+
+
 
 ---
 
 ## Features
-1.  Product browsing & search
-2.  Cart & checkout with dynamic totals
-3.  User authentication (signup, login, session handling)
-4.  Admin dashboard for products, categories & orders
+1. **Admin Dashboard** – Full-featured dashboard to manage products, categories, orders, and users with role-based access control.  
+2. **Stripe Payment Gateway** – Secure and seamless online payment integration for smooth checkout experience.
+3.  **User Authentication** – Secure signup, login, and session handling for registered users.
+4. **Filtering & Sorting** – Filter products by category, price, popularity, and apply dynamic sorting options.  
+5. **Advanced Pagination & Product Listing** – Efficient pagination for large product catalogs to enhance user experience.  
+6. **Product Browsing & Search** – Easy product discovery with keyword search and category navigation.  
+7. **Cart & Checkout** – Dynamic cart management with automatic total calculations.  
+  
+
+
 
 ---
 
