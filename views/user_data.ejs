@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column; /* Changed to column for better vertical alignment */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        .download-btn {
+            padding: 18px 36px;
+            font-size: 20px;
+            color: white;
+            background-color: #28a745; /* A pleasant green */
+            border: none;
+            border-radius: 8px; /* Slightly more rounded */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+        .download-btn:hover {
+            background-color: #218838; /* Darker green on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+        .download-btn:active {
+            transform: translateY(0); /* Press down effect */
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+        }
+        .instructions {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Download User Data</h1>
+    <button class="download-btn" onclick="download()">
+        Download User Data as  📥
+    </button>
+    <p class="instructions">Click the button above to generate and download the  file.</p>
+
+    <script>
+        function download() {
+            // The URL of your backend API endpoint
+            const url = 'http://localhost:3000/download-users';
+
+            // Create a temporary link element
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'users.xlsx'); // This attribute suggests the filename
+            document.body.appendChild(link);
+
+            // Programmatically click the link to start the download
+            link.click();
+
+            // Clean up by removing the link
+            document.body.removeChild(link);
+
+            console.log('Download initiated!');
+        }
+    </script>
+</body>
+</html>

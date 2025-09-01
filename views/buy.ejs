@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Complete Your Payment</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts - Inter for a modern look -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Custom styles to override or enhance Tailwind, especially for the Stripe button */
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #1a202c, #2d3748); /* Darker, professional gradient */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh; /* Use min-height for better adaptability */
+      padding: 1.5rem; /* Responsive padding */
+    }
+
+    /* Styling for the Stripe button, making it more integrated */
+    .stripe-button-el {
+      background-color: #4299e1 !important; /* A professional blue */
+      border: none !important;
+      color: white !important;
+      font-size: 1.125rem !important; /* text-lg */
+      font-weight: 600 !important; /* font-semibold */
+      padding: 0.75rem 2rem !important; /* py-3 px-8 */
+      border-radius: 0.5rem !important; /* rounded-lg */
+      cursor: pointer !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important; /* Stronger shadow */
+      transition: all 0.2s ease-in-out !important; /* Smooth transition */
+    }
+
+    .stripe-button-el:hover {
+      background-color: #3182ce !important; /* Darker blue on hover */
+      transform: translateY(-2px); /* Slight lift effect */
+    }
+
+    .stripe-button-el span {
+      background: none !important;
+    }
+
+    .expired-message {
+      animation: pulse 1.5s infinite alternate; /* Subtle pulsing animation */
+    }
+
+    @keyframes pulse {
+      from { opacity: 0.7; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white">
+
+  <div class="bg-gray-800 p-8 md:p-12 rounded-xl shadow-2xl max-w-md w-full text-center transform transition-all duration-300 hover:scale-105">
+    <h1 class="text-5xl md:text-6xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
+      Pay ₹<%= amount %>
+    </h1>
+    <p class="text-gray-300 mb-6 text-lg">Secure Payment Gateway</p>
+
+    <div id="timer" class="text-5xl font-bold mb-8 text-yellow-400 bg-gray-700 p-4 rounded-lg shadow-inner">
+      05:00
+    </div>
+
+    <form action="/payment" method="POST" id="paymentForm" class="space-y-6">
+      <input type="hidden" name="amount" value="<%= parseInt(amount) * 100 %>">
+      <script
+        src="https://checkout.stripe.com/checkout.js"
+        class="stripe-button"
+        data-key="<%= key %>"
+        data-amount="<%= parseInt(amount) * 100 %>"
+        data-currency="inr"
+        data-locale="auto"
+        data-email="customer@example.com"
+        data-name="Premium Product"
+        data-description="One-time purchase"
+        data-image="https://placehold.co/128x128/4299e1/ffffff?text=PAY"
+        data-label="Pay Securely Now"
+      >
+      </script>
+    </form>
+
+    <div class="expired-message text-xl text-red-500 mt-6 font-medium" id="expiredMessage" style="display: none;">
+      ⏱ Time's up! Please reload to try again.
+    </div>
+
+    <p class="text-gray-500 text-sm mt-8">
+      Powered by Stripe. Your payment information is secure.
+    </p>
+  </div>
+
+  <script>
+    let time = 5 * 60;
+    const timerDisplay = document.getElementById('timer');
+    const expiredMsg = document.getElementById('expiredMessage');
+    const paymentForm = document.getElementById('paymentForm');
+
+    function updateTimer() {
+      const minutes = Math.floor(time / 60);
+      const seconds = time % 60;
+      timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      time--;
+
+      if (time < 0) {
+        timerDisplay.textContent = "00:00";
+        expiredMsg.style.display = "block";
+
+        const stripeButton = document.querySelector('.stripe-button-el');
+        if (stripeButton) {
+          stripeButton.disabled = true;
+          stripeButton.style.opacity = '0.4';
+          stripeButton.style.cursor = 'not-allowed';
+          stripeButton.style.boxShadow = 'none'; /* Remove shadow when disabled */
+          stripeButton.style.transform = 'none'; /* Remove lift effect when disabled */
+        }
+      } else {
+        setTimeout(updateTimer, 1000);
+      }
+    }
+
+    window.onload = updateTimer;
+  </script>
+
+</body>
+</html>
