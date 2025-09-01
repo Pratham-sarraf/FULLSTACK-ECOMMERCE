@@ -57,19 +57,11 @@
 
     .search-bar {
       width: 100%;
-      padding: 12px 20px;
-      padding-right: 50px;
+      padding: 12px 20px 12px 20px;
       border: none;
       border-radius: 30px;
       font-size: 1rem;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      background: rgba(255, 255, 255, 0.95);
-    }
-
-    .search-bar:focus {
-      outline: none;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
 
     .search-button {
@@ -83,13 +75,8 @@
       padding: 8px 15px;
       border-radius: 20px;
       cursor: pointer;
-      transition: all 0.3s ease;
     }
-
-    .search-button:hover {
-      transform: translateY(-50%) scale(1.05);
-    }
-
+    
     .product-list {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -103,8 +90,6 @@
       border-radius: 12px;
       padding: 1.5rem;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
       transition: all 0.3s ease;
       text-align: center;
       display: flex;
@@ -115,7 +100,6 @@
 
     .product-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
     }
 
     .product-card img {
@@ -126,7 +110,6 @@
       margin-bottom: 1rem;
       background-color: #f1f1f1;
       padding: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .product-name {
@@ -153,37 +136,12 @@
       padding: 2rem;
       background: rgba(255, 255, 255, 0.2);
       border-radius: 12px;
-      backdrop-filter: blur(5px);
-    }
-
-    .floating-bg {
-      position: fixed;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background: rgba(253, 121, 168, 0.1);
-      filter: blur(60px);
-      z-index: -1;
-    }
-
-    .bg-1 { top: 20%; left: 10%; animation: float 8s ease-in-out infinite; }
-    .bg-2 { bottom: 15%; right: 10%; animation: float 10s ease-in-out infinite reverse; }
-
-    @keyframes float {
-      0% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(5deg); }
-      100% { transform: translateY(0) rotate(0deg); }
     }
     
-    /* ✅ Grouping container for desktop */
-    .top-controls {
-        display: block; /* Default for desktop */
-    }
-
     .header-buttons {
       position: absolute;
-      right: 56px;
-      top: 80px;
+      right: 2rem;
+      top: 2rem;
       display: flex;
       gap: 10px;
     }
@@ -196,20 +154,8 @@
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
     }
-
-    .login-button, .profile-button {
-      background: linear-gradient(to right, var(--accent), var(--secondary));
-      transform: scale(1.05);
-    }
-
-    .login-button h3, .profile-button h3, .dropdown-btn h3 {
-      margin: 0;
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
+    
     .dropdown { position: relative; }
     .dropdown-content {
       display: none;
@@ -234,41 +180,53 @@
       border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.3s ease;
       width: 100%;
     }
-    .delete-btn:hover { background-color: #e60000; }
-
+    
     .pagination {
       display: flex;
       justify-content: center;
-      align-items: center;
       flex-wrap: wrap;
       gap: 8px;
       margin-top: 30px;
     }
     .pagination a, .pagination .dots {
       padding: 8px 14px;
-      border: 1px solid #ccc;
       border-radius: 6px;
       text-decoration: none;
-      color: #333;
+      color: white;
       font-weight: 500;
-      background-color: #f9f9f9;
-      transition: all 0.2s ease;
+      background-color: rgba(255, 255, 255, 0.2);
     }
-    .pagination a:hover { background-color: #007bff; color: white; border-color: #007bff; }
-    .pagination a.active { background-color: #007bff; color: white; border-color: #007bff; }
+    .pagination a.active {
+      background-color: var(--primary);
+    }
 
     /* Responsive styles for mobile */
     @media (max-width: 768px) {
-      body { padding: 1rem; }
-      h1 { font-size: 2rem; margin-bottom: 1.5rem; padding-top: 1rem; }
-      
-      /* ✅ Use flexbox to control order on mobile */
+      body { padding: 0; }
+
+      .sticky-header {
+        position: sticky;
+        top: 0;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        padding: 1rem;
+        z-index: 100;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      }
+
+      h1 { 
+        font-size: 1.5rem; 
+        margin-bottom: 0;
+      }
+      h1::after {
+        display: none;
+      }
+
       .top-controls {
         display: flex;
         flex-direction: column;
+        padding: 1rem;
       }
       
       .header-buttons {
@@ -276,17 +234,22 @@
         justify-content: center;
         margin-bottom: 1rem;
         flex-wrap: wrap;
-        order: 1; /* ✅ Display first */
+        order: 1;
       }
       .search-container {
         margin-bottom: 1.5rem;
-        order: 2; /* ✅ Display second */
+        order: 2;
+        width: 100%;
       }
       
-      .product-list { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; }
-      .product-card { padding: 1rem; height: 300px; }
-      .product-card img { height: 150px; margin-bottom: 0.5rem; }
-      .product-name { font-size: 0.9rem; }
+      .product-list-container {
+        padding: 0 1rem 1rem 1rem;
+      }
+
+      .product-list { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .product-card { padding: 1rem; height: auto; }
+      .product-card img { height: 120px; margin-bottom: 0.5rem; }
+      .product-name { font-size: 0.9rem; white-space: normal; }
       .product-price { font-size: 1rem; }
       .delete-btn { padding: 6px 12px; font-size: 0.8rem; }
     }
@@ -294,21 +257,12 @@
 </head>
 
 <body>
-  <div class="floating-bg bg-1"></div>
-  <div class="floating-bg bg-2"></div>
-
-  <h1>Our Products</h1>
   
-  <div class="top-controls">
-    <div class="search-container">
-      <form action="/products" method="GET" id="searchForm">
-        <input type="text" name="search" class="search-bar" placeholder="Search products..." value="<%= searchQuery || '' %>" id="searchInput">
-        <button type="submit" class="search-button">
-          <i class="fas fa-search"></i>
-        </button>
-      </form>
-    </div>
+  <div class="sticky-header">
+    <h1>Our Products</h1>
+  </div>
 
+  <div class="top-controls">
     <div class="header-buttons">
       <% if (!user) { %>
         <a href="/login">
@@ -333,41 +287,51 @@
         </div>
       </div>
     </div>
+    <div class="search-container">
+      <form action="/products" method="GET" id="searchForm">
+        <input type="text" name="search" class="search-bar" placeholder="Search products..." value="<%= searchQuery || '' %>" id="searchInput">
+        <button type="submit" class="search-button">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+    </div>
   </div>
 
-  <div class="product-list">
-    <% if (products && products.length > 0) { %>
-      <% products.forEach(product => { %>
-        <div class="product-card">
-          <div>
-            <a href="/products/<%= product._id %>" style="text-decoration:none; color:inherit;">
-              <img src="<%= product.url %>" alt="<%= product.name %>" />
-              <div class="product-name" title="<%= product.name %>"><%= product.name %></div>
-              <div class="product-price">₹<%= Number(product.price).toLocaleString('en-IN') %></div>
-            </a>
+  <div class="product-list-container">
+    <div class="product-list">
+      <% if (products && products.length > 0) { %>
+        <% products.forEach(product => { %>
+          <div class="product-card">
+            <div>
+              <a href="/products/<%= product._id %>" style="text-decoration:none; color:inherit;">
+                <img src="<%= product.url %>" alt="<%= product.name %>" />
+                <div class="product-name" title="<%= product.name %>"><%= product.name %></div>
+                <div class="product-price">₹<%= Number(product.price).toLocaleString('en-IN') %></div>
+              </a>
+            </div>
+            <% if (typeof user !== "undefined" && user.isAdmin) { %>
+              <button class="delete-btn" data-id="<%= product._id %>">Remove</button>
+            <% } %>
           </div>
-          <% if (typeof user !== "undefined" && user.isAdmin) { %>
-            <button class="delete-btn" data-id="<%= product._id %>">Remove</button>
-          <% } %>
-        </div>
-      <% }) %>
-    <% } else { %>
-      <p class="no-products">No products found. <i class="fas fa-box-open"></i></p>
-    <% } %>
-  </div>
+        <% }) %>
+      <% } else { %>
+        <p class="no-products">No products found. <i class="fas fa-box-open"></i></p>
+      <% } %>
+    </div>
 
-  <div class="pagination">
-    <% if (totalPages > 1) { %>
-      <% if (currentPage > 1) { %>
-        <a href="/products?page=<%= currentPage - 1 %><% if(locals.sort) { %>&sort=<%= locals.sort %><% } %><% if(locals.searchQuery) { %>&search=<%= locals.searchQuery %><% } %>">PREV</a>
+    <div class="pagination">
+      <% if (totalPages > 1) { %>
+        <% if (currentPage > 1) { %>
+          <a href="/products?page=<%= currentPage - 1 %><% if(locals.sort) { %>&sort=<%= locals.sort %><% } %><% if(locals.searchQuery) { %>&search=<%= locals.searchQuery %><% } %>">PREV</a>
+        <% } %>
+        <% for (let i = 1; i <= totalPages; i++) { %>
+          <a href="/products?page=<%= i %><% if(locals.sort) { %>&sort=<%= locals.sort %><% } %><% if(locals.searchQuery) { %>&search=<%= locals.searchQuery %><% } %>" class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+        <% } %>
+        <% if (currentPage < totalPages) { %>
+          <a href="/products?page=<%= currentPage + 1 %><% if(locals.sort) { %>&sort=<%= locals.sort %><% } %><% if(locals.searchQuery) { %>&search=<%= locals.searchQuery %><% } %>">NEXT</a>
+        <% } %>
       <% } %>
-      <% for (let i = 1; i <= totalPages; i++) { %>
-        <a href="/products?page=<%= i %><% if(locals.sort) { %>&sort=<%= locals.sort %><% } %><% if(locals.searchQuery) { %>&search=<%= locals.searchQuery %><% } %>" class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
-      <% } %>
-      <% if (currentPage < totalPages) { %>
-        <a href="/products?page=<%= currentPage + 1 %><% if(locals.sort) { %>&sort=<%= locals.sort %><% } %><% if(locals.searchQuery) { %>&search=<%= locals.searchQuery %><% } %>">NEXT</a>
-      <% } %>
-    <% } %>
+    </div>
   </div>
 
   <script>
