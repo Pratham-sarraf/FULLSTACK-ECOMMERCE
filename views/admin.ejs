@@ -27,6 +27,7 @@
       font-family: 'Orbitron', sans-serif;
       font-size: 2rem;
       color: #fd79a8;
+      margin: 0;
     }
 
     .header nav a {
@@ -44,7 +45,7 @@
       width: 220px;
       background: rgba(0,0,0,0.3);
       padding: 2rem 1rem;
-      min-height: 100vh;
+      min-height: calc(100vh - 74px); /* Adjust for header height */
       backdrop-filter: blur(6px);
     }
 
@@ -100,10 +101,52 @@
     .card p {
       color: #dfe6e9;
     }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        .header {
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+        }
+        
+        .header h1 {
+            font-size: 1.5rem;
+        }
+
+        .container {
+            flex-direction: column;
+        }
+
+        .sidebar {
+            width: 100%;
+            min-height: auto;
+            padding: 1rem;
+            display: flex;
+            flex-wrap: wrap; /* Allow links to wrap */
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .sidebar h3 {
+            display: none; /* Hide "Navigation" title on mobile */
+        }
+        
+        .sidebar a {
+            margin-bottom: 0;
+        }
+
+        .main {
+            padding: 1rem;
+        }
+        
+        .card-grid {
+            grid-template-columns: 1fr;
+        }
+    }
   </style>
 </head>
 <body>
-
   <header class="header">
     <h1>Urban Commerce Admin 👑</h1>
     <nav>
@@ -118,7 +161,7 @@
       <a href="/"><i class="fas fa-tachometer-alt"></i> Home</a>
       <a href="/products"><i class="fas fa-box"></i> Products</a>
       <a href="/admin/users"><i class="fas fa-users"></i> Users</a>
-      <a href="/admin/contact-us"><i class="fas fa-receipt"></i> Suggestion Collection</a>
+      <a href="/admin/contact-us"><i class="fas fa-receipt"></i> Suggestions</a>
     </aside>
 
     <main class="main">
@@ -138,15 +181,11 @@
           <p>Users Registered</p>
         </div>
         <div class="card">
-       <h2>  ₹ <%= totalSales.toLocaleString("en-IN") %></h2>
-
+          <h2>₹ <%= totalSales.toLocaleString("en-IN") %></h2>
           <p>Total Sales</p>
         </div>
       </div>
     </main>
   </div>
-
-
-
 </body>
 </html>
